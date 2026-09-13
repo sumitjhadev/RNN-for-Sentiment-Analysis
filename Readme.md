@@ -1,216 +1,217 @@
-
 <div align="center">
 
-🧠 RNN SENTIMENT ANALYSIS
+# 🧠 RNN Sentiment Analysis
 
-A Recurrent Neural Network built with PyTorch for binary text classification
+### Teaching a Recurrent Neural Network to *read between the lines* of a movie review
 
-<p>
-  <img src="https://img.shields.io/badge/Python-3.11-3776AB?style=flat-square&logo=python&logoColor=white">
-  <img src="https://img.shields.io/badge/PyTorch-RNN-EE4C2C?style=flat-square&logo=pytorch&logoColor=white">
-  <img src="https://img.shields.io/badge/NLP-TF--IDF-8A2BE2?style=flat-square">
-  <img src="https://img.shields.io/badge/Test%20Accuracy-85.16%25-2E8B57?style=flat-square">
-</p>
+<br>
 
-From raw text → numerical representation → recurrent neural network → prediction
+![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![PyTorch](https://img.shields.io/badge/PyTorch-RNN-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
+![NLP](https://img.shields.io/badge/NLP-TF--IDF-8A2BE2?style=for-the-badge)
+![Accuracy](https://img.shields.io/badge/Test%20Accuracy-85.16%25-2EB872?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Complete-success?style=for-the-badge)
+
+<br>
+
+**`Raw Text`** → **`NLP Cleaning`** → **`TF-IDF Vector`** → **`PyTorch RNN`** → **`😊 / 😞`**
 
 </div>
 
-⚡ Project Overview
+<br>
 
-This project focuses on building and training a Recurrent Neural Network (RNN) from scratch using PyTorch for binary sentiment classification.
+## 📖 Table of Contents
 
-The main objective is to demonstrate the complete deep-learning workflow:
+- [Overview](#-overview)
+- [Architecture](#-architecture)
+- [The Model](#-the-model)
+- [Pipeline](#-pipeline)
+- [Results](#-results)
+- [Tech Stack](#️-tech-stack)
+- [Project Structure](#️-project-structure)
+- [Getting Started](#-getting-started)
+- [What This Demonstrates](#-what-this-demonstrates)
+- [Author](#-author)
 
-Preprocess → Vectorize → Prepare Tensors → Build RNN → Train → Evaluate
+<br>
 
-The model achieved a test accuracy of 85.16%.
+## ⚡ Overview
 
-🧩 Architecture
+> A **Recurrent Neural Network**, built from scratch in **PyTorch**, that reads an IMDb movie review and decides — *did the viewer love it, or hate it?*
 
+This project walks through the **complete deep-learning workflow** for text classification, end to end:
+
+```
+  Preprocess  →  Vectorize  →  Tensorize  →  Build RNN  →  Train  →  Evaluate
+```
+
+No shortcuts, no black-box libraries doing the thinking — the RNN, the loss, the training loop, all handwritten and transparent.
+
+<br>
+
+## 🧩 Architecture
+
+```mermaid
 flowchart LR
-    A["📝 Raw Text"] --> B["🧹 NLP Preprocessing"]
-    B --> C["🔢 TF-IDF<br/>5,000 Features"]
-    C --> D["🔥 PyTorch RNN"]
-    D --> E["🧠 Hidden State<br/>128"]
-    E --> F["📐 Linear Layer"]
-    F --> G["🎯 Binary Prediction"]
+    A["📝 Raw Review"] --> B["🧹 NLP Cleaning"]
+    B --> C["🔢 TF-IDF\n5,000 Features"]
+    C --> D["🔥 PyTorch RNN\nHidden Size 128"]
+    D --> E["📐 Linear Layer"]
+    E --> F["🎯 Positive / Negative"]
 
-🧠 The RNN
+    style A fill:#2b2f38,stroke:#8A2BE2,color:#fff
+    style B fill:#2b2f38,stroke:#8A2BE2,color:#fff
+    style C fill:#2b2f38,stroke:#EE4C2C,color:#fff
+    style D fill:#2b2f38,stroke:#EE4C2C,color:#fff
+    style E fill:#2b2f38,stroke:#2EB872,color:#fff
+    style F fill:#2b2f38,stroke:#2EB872,color:#fff
+```
 
-The core of this project is a PyTorch nn.RNN.
+<br>
 
-Model Configuration
+## 🧠 The Model
 
-Parameter
+The heart of this project is a single `nn.RNN` layer doing the heavy lifting.
 
-Value
+<div align="center">
 
-Architecture
+| ⚙️ Parameter | 🔧 Value |
+|:---|:---:|
+| Architecture | `nn.RNN` |
+| Hidden Size | `128` |
+| Input Features | `5,000` |
+| Loss Function | `BCELoss` |
+| Optimizer | `Adam` |
+| Epochs | `10` |
+| Output | Binary Classification |
+| **Test Accuracy** | **`85.16%`** |
 
-nn.RNN
+</div>
 
-Hidden Size
+<br>
 
-128
+## 🔄 Pipeline
 
-Input Features
-
-5,000
-
-Loss Function
-
-BCELoss
-
-Optimizer
-
-Adam
-
-Training Epochs
-
-10
-
-Output
-
-Binary Classification
-
-Test Accuracy
-
-85.16%
-
-🔄 Data → Model Flow
-
+```mermaid
 flowchart TD
-    A["Dataset"] --> B["Clean Text"]
-    B --> C["Lowercase"]
-    C --> D["Remove URLs / HTML / Punctuation"]
-    D --> E["Remove Stopwords"]
-    E --> F["Porter Stemming"]
-    F --> G["TF-IDF Vectorization"]
-    G --> H["TensorDataset"]
-    H --> I["DataLoader"]
-    I --> J["PyTorch RNN"]
-    J --> K["Binary Output"]
+    A["📦 IMDb Dataset"] --> B["🔡 Lowercase"]
+    B --> C["🧽 Strip URLs / HTML / Punctuation"]
+    C --> D["🚫 Remove Stopwords"]
+    D --> E["🌱 Porter Stemming"]
+    E --> F["🔢 TF-IDF Vectorization"]
+    F --> G["📊 TensorDataset"]
+    G --> H["🔁 DataLoader"]
+    H --> I["🔥 PyTorch RNN"]
+    I --> J["🎯 Binary Output"]
 
-📊 Model Result
+    style A fill:#1e2127,stroke:#4d90fe,color:#fff
+    style J fill:#1e2127,stroke:#2EB872,color:#fff
+```
+
+<br>
+
+## 📊 Results
 
 <div align="center">
 
-🎯 85.16% Test Accuracy
+### 🎯 85.16% Test Accuracy
+
+```
+RNN  ████████████████████████████████████████████░░░░░  85.16%
+```
+
+*Trained for 10 epochs with Adam + BCELoss, evaluated on a held-out IMDb test split.*
 
 </div>
 
-xychart-beta
-    title "RNN Test Accuracy"
-    x-axis ["RNN"]
-    y-axis "Accuracy (%)" 0 --> 100
-    bar [85.16]
+<br>
 
-Final recorded test accuracy: 85.1568%
+## 🛠️ Tech Stack
 
-📈 Training Setup
+<div align="center">
 
-flowchart LR
-    A["10 Epochs"] --> B["RNN Training"]
-    B --> C["Adam Optimizer"]
-    C --> D["BCELoss"]
-    D --> E["Evaluation"]
+| Icon | Technology | Role |
+|:---:|:---|:---|
+| 🐍 | **Python** | Core programming language |
+| 🔥 | **PyTorch** | RNN architecture & training |
+| 🔤 | **NLTK** | NLP preprocessing & stemming |
+| 📊 | **Scikit-learn** | TF-IDF vectorization & data splitting |
+| 🐼 | **Pandas** | Data loading & handling |
+| 📓 | **Jupyter / Colab** | Notebook development |
 
-The training pipeline uses mini-batches through PyTorch DataLoader, followed by evaluation on the held-out test set.
+</div>
 
-🗂️ Project Structure
+<br>
 
+## 🗂️ Project Structure
+
+```
 RNN-for-Sentiment-Analysis/
 │
-├── 📓 imdb-sentiment-analysis-rnn.ipynb
-├── 📄 IMDB Dataset.csv
-└── 📘 README.md
+├── 📓 imdb-sentiment-analysis-rnn.ipynb    # Full training & evaluation notebook
+├── 📄 IMDB Dataset.csv                     # Raw movie review dataset
+└── 📘 README.md                            # You are here
+```
 
-🛠️ Tech Stack
+<br>
+
+## 🚀 Getting Started
+
+**1. Clone the repository**
+```bash
+git clone https://github.com/sumitjhadev/RNN-for-Sentiment-Analysis.git
+cd RNN-for-Sentiment-Analysis
+```
+
+**2. Install dependencies**
+```bash
+pip install pandas nltk scikit-learn torch
+```
+
+**3. Launch the notebook**
+```bash
+jupyter notebook
+```
+
+Then open **`imdb-sentiment-analysis-rnn.ipynb`** and run the cells top to bottom. 🎬
+
+<br>
+
+## ✨ What This Demonstrates
+
+- 🧠 Building a Recurrent Neural Network from scratch in PyTorch
+- 🔢 Converting raw text into numerical features with TF-IDF
+- 🧹 Practical, real-world NLP preprocessing
+- ⚙️ Training with Adam optimizer + BCELoss
+- 📦 Using PyTorch `TensorDataset` and `DataLoader`
+- 📊 Evaluating a binary text classification model
+- 🎯 Hitting **85.16%** test accuracy
+
+<br>
 
 <div align="center">
 
-Technology
+## 🏁 Final Takeaway
 
-Role
+The dataset gives the task — but the **real story here is the RNN**: architecture, training loop, and evaluation, built and understood from the ground up.
 
-🐍 Python
+<br>
 
-Core programming
+### 🧠 BUILD · TRAIN · EVALUATE · LEARN
 
-🔥 PyTorch
+<br>
 
-RNN & deep learning
-
-🔤 NLTK
-
-NLP preprocessing
-
-📊 Scikit-learn
-
-TF-IDF & data splitting
-
-🐼 Pandas
-
-Data handling
-
-📓 Jupyter / Colab
-
-Notebook development
+---
 
 </div>
 
-🚀 Run The Project
+## 👤 Author
 
-1. Clone
-
-git clone https://github.com/sumitjhadev/RNN-for-Sentiment-Analysis.git
-cd RNN-for-Sentiment-Analysis
-
-2. Install dependencies
-
-pip install pandas nltk scikit-learn torch
-
-3. Open the notebook
-
-jupyter notebook
-
-Open:
-
-imdb-sentiment-analysis-rnn.ipynb
-
-Then run the notebook cells from top to bottom.
-
-✨ What This Project Demonstrates
-
-🧠 Building an RNN with PyTorch
-
-🔄 Preparing text data for neural networks
-
-🔢 Converting text into numerical features with TF-IDF
-
-🧹 Practical NLP preprocessing
-
-⚙️ Training with Adam + BCELoss
-
-📦 Working with PyTorch TensorDataset and DataLoader
-
-📊 Evaluating a binary classification model
-
-🎯 Achieving 85.16% test accuracy
-
-🏁 Final Takeaway
-
-This project is primarily a demonstration of how a Recurrent Neural Network can be implemented, trained, and evaluated using PyTorch.
-
-The dataset provides the text classification task, but the central focus of the project is the RNN architecture and its complete training pipeline.
+**Sumit Jha**
+🔗 [@sumitjha.ai](https://github.com/sumitjhadev) &nbsp;•&nbsp; 💻 [github.com/sumitjhadev](https://github.com/sumitjhadev)
 
 <div align="center">
 
-🧠 BUILD • TRAIN • EVALUATE • LEARN
-
-RNN Sentiment Analysis | PyTorch
-
-⭐ If you like the project, consider giving it a star!
+⭐ **If this project helped you understand RNNs better, consider giving it a star!** ⭐
 
 </div>
