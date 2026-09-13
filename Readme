@@ -1,1 +1,256 @@
+🎬 IMDb Sentiment Analysis — RNN
 
+<p align="center">
+
+  <img src="https://img.shields.io/badge/Python-3.11-3776AB?style=for-the-badge&logo=python&logoColor=white" />
+  <img src="https://img.shields.io/badge/PyTorch-RNN-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white" />
+  <img src="https://img.shields.io/badge/NLP-Sentiment%20Analysis-8A2BE2?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Accuracy-85.16%25-2E8B57?style=for-the-badge" />
+
+</p>
+
+<p align="center">
+  <b>🎥 Understanding Movie Reviews with Natural Language Processing & Recurrent Neural Networks</b>
+</p>
+
+✨ About The Project
+
+This project performs sentiment analysis on IMDb movie reviews using a complete NLP pipeline and a PyTorch Recurrent Neural Network (RNN).
+
+The model classifies movie reviews into:
+
+🟢 Positive
+
+🔴 Negative
+
+The project combines text preprocessing, TF-IDF feature extraction, and an RNN-based deep learning model.
+
+🧠 Project Pipeline
+
+flowchart LR
+    A["🎬 IMDb Reviews"] --> B["🧹 Text Cleaning"]
+    B --> C["✂️ Stopword Removal"]
+    C --> D["🌱 Stemming"]
+    D --> E["🔢 TF-IDF"]
+    E --> F["🧠 PyTorch RNN"]
+    F --> G["📊 Sentiment Prediction"]
+    G --> H["🟢 Positive / 🔴 Negative"]
+
+📊 Dataset
+
+The IMDb dataset initially contains 50,000 reviews.
+
+After removing duplicate reviews:
+
+49,582 reviews remained.
+
+Dataset Split
+
+pie title Dataset Distribution
+    "Training Data — 39,665" : 39665
+    "Testing Data — 9,917" : 9917
+
+Dataset
+
+Samples
+
+Original
+
+50,000
+
+After removing duplicates
+
+49,582
+
+Training
+
+39,665
+
+Testing
+
+9,917
+
+🔧 NLP Preprocessing
+
+The reviews are processed through several NLP steps:
+
+Raw Review
+    ↓
+Lowercase
+    ↓
+Remove URLs
+    ↓
+Remove HTML
+    ↓
+Remove Punctuation
+    ↓
+Remove Stopwords
+    ↓
+Porter Stemming
+    ↓
+Clean Text
+
+Feature Extraction
+
+TF-IDF is used to convert cleaned reviews into numerical features.
+
+TfidfVectorizer(max_features=5000)
+
+📌 5,000 features are used for model training.
+
+🧠 RNN Architecture
+
+The project uses a PyTorch RNN with:
+
+Component
+
+Configuration
+
+Framework
+
+PyTorch
+
+Model
+
+RNN
+
+Hidden Size
+
+128
+
+Output
+
+Binary sentiment
+
+Loss
+
+BCELoss
+
+Optimizer
+
+Adam
+
+Epochs
+
+10
+
+Model Flow
+
+flowchart TD
+    A["TF-IDF Features<br/>5,000"] --> B["RNN"]
+    B --> C["Hidden State<br/>128"]
+    C --> D["Linear Layer"]
+    D --> E["Binary Output"]
+    E --> F["Positive / Negative"]
+
+📈 Model Performance
+
+The trained model achieved:
+
+85.16% Accuracy 🎯
+
+xychart-beta
+    title "Model Accuracy"
+    x-axis ["RNN"]
+    y-axis "Accuracy (%)" 0 --> 100
+    bar [85.16]
+
+Test Accuracy: 85.1568%
+
+🛠️ Tech Stack
+
+Technology
+
+Purpose
+
+🐍 Python
+
+Programming
+
+🐼 Pandas
+
+Data Processing
+
+🔤 NLTK
+
+NLP & Text Preprocessing
+
+📐 Scikit-learn
+
+TF-IDF & Data Splitting
+
+🔥 PyTorch
+
+RNN Deep Learning
+
+📓 Jupyter / Google Colab
+
+Development
+
+📂 Project Structure
+
+RNN-for-Sentiment-Analysis/
+│
+├── 📓 imdb-sentiment-analysis-rnn.ipynb
+├── 📄 IMDB Dataset.csv
+└── 📘 README.md
+
+🚀 How To Run
+
+1️⃣ Clone the repository
+
+git clone https://github.com/sumitjhadev/RNN-for-Sentiment-Analysis.git
+
+2️⃣ Install dependencies
+
+pip install pandas nltk scikit-learn torch
+
+3️⃣ Open the notebook
+
+jupyter notebook
+
+Then open:
+
+imdb-sentiment-analysis-rnn.ipynb
+
+4️⃣ Run all cells
+
+The notebook will:
+
+Load Dataset
+     ↓
+Preprocess Reviews
+     ↓
+Create TF-IDF Features
+     ↓
+Train RNN
+     ↓
+Evaluate Model
+     ↓
+Display Accuracy
+
+🎯 Key Highlights
+
+📝 IMDb movie review classification
+
+🧹 Complete NLP preprocessing pipeline
+
+🔤 Stopword removal & stemming
+
+📊 TF-IDF feature extraction
+
+🧠 PyTorch RNN implementation
+
+⚡ Adam optimization
+
+🎯 85.16% test accuracy
+
+📌 Result
+
+The project demonstrates how traditional NLP preprocessing + TF-IDF features + a Recurrent Neural Network can be combined to classify movie reviews into positive and negative sentiments.
+
+👨‍💻 Author
+
+Sumit Jha
+
+⭐ If you find this project useful, consider giving the repository a star!
