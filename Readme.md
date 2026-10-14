@@ -1,6 +1,6 @@
 <div align="center">  
 
-# 🧠 RNN Sentiment Analysis.
+# 🧠 RNN Sentiment Analysis
 
 ### Teaching a Recurrent Neural Network to *read between the lines* of a movie review
 
